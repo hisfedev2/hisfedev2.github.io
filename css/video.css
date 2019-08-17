@@ -1,0 +1,188 @@
+.main {
+  height: 100vh;
+  position: relative;
+}
+
+.carousel {
+  position: relative;
+  height: 80vh;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.carousel__contents {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  opacity: 1;
+}
+
+.video {
+  width: 60vw;
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 30px;
+  height: 0;
+}
+
+.video__title {
+  position: absolute;
+  font-size: 10rem;
+  font-family: 'Anton', sans-serif;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: crimson;
+  z-index: 3;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.selected .video__title { animation: fadeInTitle 1s forwards; }
+
+.video__desc {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 5rem;
+  font-family: 'Julietta', serif;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  z-index: 3;
+  opacity: 0;
+}
+
+.selected .video__desc { animation: fadeInDesc 1s forwards; }
+
+.video__cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  cursor: pointer;
+  z-index: 1;
+  transition: opacity 0.5s;
+}
+
+.selected .video:hover .video__cover {
+  opacity: 0;
+  z-index: -1;
+}
+
+.happiness { background-image: url('../images/video-Happiness.jpg'); }
+.benatural { background-image: url('../images/video-BeNatural.jpg'); }
+.icecreamcake { background-image: url('../images/video-IceCreamCake.jpg'); }
+.thered { background-image: url('../images/video-thered.png'); }
+.thevelvet { background-image: url('../images/video-thevelvet.jpg'); }
+.russian { background-image: url('../images/video-RussianRoulette.jpg'); }
+.rookie { background-image: url('../images/video-rookie.jpg'); }
+.theredsummer { background-image: url('../images/video-theredsummer.jpg'); }
+.perfectvelvet { background-image: url('../images/video-perfectvelvet.jpg'); }
+.theperfectredvelvet { background-image: url('../images/video-ThePerfectRedVelvet.jpg'); }
+.summermagic { background-image: url('../images/video-SummerMagic.png'); }
+
+.rbb {
+  background-image: url('../images/video-RBB.jpg');
+  background-position: top center;
+}
+.therevefestivalday1 { background-image: url('../images/video-TheReveFestival1.png'); }
+
+.video__player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+.carousel__contents.hide {
+  display: none;
+}
+
+.carousel__contents.prev {
+  z-index: 5;
+  left: 30%;
+  opacity: 0.7;
+  transform: translate(-140%, -60%);
+}
+.carousel__contents.prev .video { width: 40vw; }
+
+.carousel__contents.selected {
+  z-index: 10;
+  left: 50%;
+}
+
+.carousel__contents.next {
+  z-index: 5;
+  left: 70%;
+  opacity: 0.7;
+  transform: translate(40%, -60%);
+}
+.carousel__contents.next .video { width: 40vw; }
+
+/* Animation */
+
+@keyframes fadeInTitle {
+  from {
+    opacity: 0;
+    bottom: -30%;
+  }
+
+  to {
+    opacity: 1;
+    bottom: -10%;
+  }
+}
+
+@keyframes fadeInDesc {
+  from {
+    opacity: 0;
+    bottom: -40%;
+  }
+
+  to {
+    opacity: 1;
+    bottom: -20%;
+  }
+}
+
+/* Media Query */
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .carousel {
+    height: 90%;
+    top: 0;
+    transform: none;
+    overflow: hidden;
+  }
+
+  .video { width: 90vw; }
+  .video__title { font-size: 5rem; }
+
+  .video__desc {
+    font-size: 2.5rem;
+    bottom: 0;
+  }
+
+  .carousel__contents.prev {
+    left: 50%;
+    transform: translate(-50%, -140%);
+  }
+  .carousel__contents.prev .video { width: 75vw; }
+
+  .carousel__contents.next {
+    left: 50%;
+    transform: translate(-50%, 40%);
+  }
+  .carousel__contents.next .video { width: 75vw; }
+}

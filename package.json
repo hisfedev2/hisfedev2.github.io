@@ -1,0 +1,31 @@
+{
+  "name": "redvelvet-fansite",
+  "version": "1.0.0",
+  "description": "Build fansite of Redvelvet using pure HTML/CSS/JS",
+  "main": "default.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baeharam/Redvelvet-Fansite.git"
+  },
+  "author": "Haram Bae",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/baeharam/Redvelvet-Fansite/issues"
+  },
+  "homepage": "https://github.com/baeharam/Redvelvet-Fansite#readme",
+  "dependencies": {
+    "fullpage.js": "^3.0.7",
+    "intersection-observer": "^0.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
+    "imagesloaded": "^4.1.4",
+    "masonry-layout": "^4.2.2",
+    "stylelint-config-standard": "^18.3.0"
+  }
+}

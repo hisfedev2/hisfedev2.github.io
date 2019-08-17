@@ -1,2 +1,2 @@
-# hisfedev2.github.io
-Test website
+# Redvelvet-Fansite
+Build fansite of Redvelvet using pure HTML/CSS/JS

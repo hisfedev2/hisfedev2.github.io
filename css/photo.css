@@ -1,0 +1,54 @@
+.main { margin-top: 10vh; }
+
+.gutter-sizer {
+  width: 2rem;
+}
+
+.grid__sizer,
+.grid__item {
+  width: calc((100% - 4rem) / 3);
+}
+
+.grid__item {
+  float: left;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  overflow: hidden;
+  transform: scale(0);
+}
+
+.grid__item--scale {
+  animation: show 0.5s both ease-in-out;
+}
+
+.placeholder img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
+}
+
+.placeholder img.loaded {
+  opacity: 1;
+}
+
+@keyframes show {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .grid__sizer,
+  .grid__item {
+    width: calc((100% - 2rem) / 2);
+  }
+}
+
+@media (max-width: 576px) {
+  .grid__sizer,
+  .grid__item {
+    width: 100%;
+  }
+}

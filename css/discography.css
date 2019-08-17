@@ -1,0 +1,229 @@
+/*
+Author: Mert Cukuren
+URL: https://codepen.io/knyttneve/pen/bgvmma/
+*/
+
+.timeline__wrapper {
+  width: 100%;
+  position: relative;
+  padding: 8rem 0;
+  transition: 0.3s ease 0s;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.timeline__wrapper::before {
+  content: ' ';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(99, 99, 99, 0.8);
+}
+
+.timeline {
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  max-width: 70rem;
+  position: relative;
+}
+
+.timeline::before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.timeline__content__title {
+  font-weight: normal;
+  font-size: 6.6rem;
+  margin: -2rem 0 0 0;
+  transition: 0.4s;
+  padding: 0 1rem;
+  color: white;
+  position: relative;
+}
+
+.timeline__content__desc {
+  margin: 0;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: normal;
+  line-height: 2.5rem;
+}
+
+.timeline__item {
+  padding: 4rem 0;
+  opacity: 0.3;
+  filter: blur(2px);
+  transition: 0.5s;
+  width: 50%;
+  display: flex;
+  position: relative;
+  margin-left: -2rem;
+  transform: translateY(-8rem);
+}
+
+.timeline__item::before {
+  content: attr(data-text);
+  letter-spacing: 3px;
+  width: 100%;
+  position: absolute;
+  top: 70%;
+  right: calc(-100% - 5.6rem);
+  color: white;
+  font-size: 2rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.5);
+  margin-top: -5px;
+  padding-left: 1.5rem;
+  opacity: 0;
+}
+
+.timeline__item:nth-child(even) {
+  align-self: flex-end;
+  margin-left: 0;
+  margin-right: -2rem;
+}
+
+.timeline__item:nth-child(even)::before {
+  right: auto;
+  text-align: right;
+  left: calc(-100% - 5.6rem);
+  padding-left: 0;
+  border-left: none;
+  border-right: 2px solid rgba(255, 255, 255, 0.5);
+  padding-right: 1.5rem;
+}
+
+.timeline__item--active {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.timeline__item--active::before {
+  top: 50%;
+  transition: 0.3s all 0.2s;
+  opacity: 1;
+}
+
+.timeline__img {
+  box-shadow: 0 1rem 1.5rem rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+}
+
+.timeline__item--active .timeline__img {
+  animation: CDRotation 7s infinite linear;
+}
+
+.timeline__img__wrapper { position: relative; }
+
+.timeline__img__wrapper::after {
+  content: ' ';
+  position: absolute;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.9);
+  width: 30%;
+  height: 30%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.timeline__link {
+  position: absolute;
+  right: -50%;
+  top: 50%;
+  transform: translateY(60%);
+}
+
+.timeline__item:nth-child(even) .timeline__link {
+  left: -50%;
+}
+
+.timeline__player {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.youtube,
+.melon {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}
+
+/* Animation */
+
+@keyframes CDRotation {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Media Query */
+
+/* Tablet */
+
+@media (max-width: 768px) {
+  .header {
+    position: fixed;
+    background-color: transparent;
+  }
+
+  .timeline::before { display: none; }
+
+  .timeline__item {
+    align-self: center;
+    margin-left: 0;
+    margin-bottom: 20rem;
+    width: 80vw;
+  }
+
+  .timeline__item::before,
+  .timeline__item:nth-child(even)::before {
+    display: none;
+  }
+
+  .timeline__item:nth-child(even) {
+    align-self: center;
+    margin-right: 0;
+  }
+
+  .timeline__item:nth-child(even)::before {
+    border-right: none;
+    text-align: left;
+  }
+
+  .timeline__link,
+  .timeline__item:nth-child(even) .timeline__link {
+    display: inline-block;
+    top: auto;
+    bottom: -5%;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
+  .timeline__link img,
+  .timeline__item:nth-child(even) .timeline__link img {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .timeline__content {
+    text-align: center;
+  }
+}
