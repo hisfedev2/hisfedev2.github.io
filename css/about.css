@@ -21,10 +21,12 @@ body {
 }
 
 .group__member h2 {
-  color: rgba(0, 0, 0, 0.7);
+  color: white;
+  display: none;
   margin-bottom: 6rem;
-  font-size: 4rem;
-  font-family: 'Libre Caslon Text', serif;
+  font-size: 5vw;
+  font-family: "Fascinate", serif;
+  font-weight: bold;
   transition: font-size 0.5s;
   animation-name: fadeInFromBottom;
   animation-duration: 1s;
@@ -215,25 +217,26 @@ body {
   padding: 10px;
 }
 
-.photo {
-  max-width: 35vw;
+.placeholder {
+  width: 35vw;
   margin-left: 10rem;
   align-self: flex-start;
   transform: translateX(20%);
   opacity: 0;
+  border-radius: 1rem;
 }
 
-.photo:nth-child(even) {
+.placeholder:nth-child(even) {
   margin-right: 10rem;
   margin-top: -10rem;
   align-self: flex-end;
 }
 
-.photo.intersect:nth-child(odd) {
+.placeholder.intersect:nth-child(odd) {
   animation: showPhotoFromRight 1s both 0.5s;
 }
 
-.photo.intersect:nth-child(even) {
+.placeholder.intersect:nth-child(even) {
   animation: showPhotoFromLeft 1s both 0.5s;
 }
 
@@ -292,7 +295,7 @@ body {
 
 @keyframes expandMobile {
   from { height: 20%; }
-  to { height: 100%; }
+  to { height: 110%; }
 }
 
 @keyframes shrinkMobile {
@@ -337,8 +340,13 @@ body {
 /* Mobile */
 
 @media (max-width: 768px) {
+  .main {
+    position: relative;
+    height: 90vh;
+  }
+
   .group {
-    height: 100vh;
+    height: 100%;
     position: absolute;
   }
 
@@ -351,6 +359,7 @@ body {
 
   .group__member h2 {
     margin-left: 4rem;
+    font-size: 6rem;
   }
 
   .group__member:nth-child(1) {
@@ -369,24 +378,27 @@ body {
     top: 40%;
     left: 0;
     animation-name: appearFromLeft;
+    background-position-y: 25%;
   }
 
   .group__member:nth-child(4) {
     top: 60%;
     left: 0;
     animation-name: appearFromRight;
+    background-position-y: 25%;
   }
 
   .group__member:nth-child(5) {
     top: 80%;
     left: 0;
     animation-name: appearFromLeft;
+    background-position-y: 40%;
   }
 
   .group__member.group__member--expand {
     top: 0;
     width: 100vw;
-    height: 100%;
+    height: 110%;
     animation: expandMobile 0.5s both;
   }
 
@@ -434,13 +446,13 @@ body {
     top: 1%;
   }
 
-  .photo {
-    max-width: 80vw;
+  .placeholder {
+    width: 80vw;
     margin-left: 0;
     margin-bottom: 2rem;
   }
 
-  .photo:nth-child(even) {
+  .placeholder:nth-child(even) {
     margin-right: 0;
     margin-top: 0;
   }
