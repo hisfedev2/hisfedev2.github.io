@@ -7,13 +7,12 @@ I changed jQuery source code into pure javascript and modified useless logics
 const initPlayer = function initPlayer() {
   let player;
 
-  return function closureForPlayer(youtubeID) {
-    if (player && player.loadVideoById) {
+  return function innerInitPlayer(youtubeID) {
+    if (typeof (player) !== 'undefined' && typeof (player.loadVideoById) !== 'undefined') {
       player.loadVideoById(youtubeID);
       return;
     }
     const loadPlayer = function loadPlayer() {
-      // eslint-disable-next-line no-undef
       player = new YT.Player('timeline__player-js', {
         videoId: youtubeID,
         loop: true,
@@ -21,7 +20,6 @@ const initPlayer = function initPlayer() {
       });
     };
 
-    // eslint-disable-next-line no-undef
     if (typeof (YT) === 'undefined' || typeof (YT.Player) === 'undefined') {
       window.onYouTubePlayerAPIReady = () => loadPlayer();
     } else {
@@ -38,7 +36,9 @@ const initScrollEvent = function initScrollEvent() {
   const extraSpace = 80;
 
   const changeBackground = function changeBackground(src) {
-    timeline.style.backgroundImage = `url(${src})`;
+    if (!matchMedia('(max-width: 768px)').matches) {
+      timeline.style.backgroundImage = `url(${src})`;
+    }
   };
 
   const removeAllActiveElems = function removeAllActiveElems() {
@@ -65,4 +65,38 @@ const initScrollEvent = function initScrollEvent() {
   });
 };
 
-window.onload = () => initScrollEvent();
+const initLoader = function initLoader() {
+  let loadedCount = 0;
+  const timelineImgs = document.querySelectorAll('.timeline__img');
+  timelineImgs.forEach((img) => {
+    const image = new Image();
+    image.onload = () => {
+      if (image.complete) loadedCount += 1;
+      if (loadedCount === timelineImgs.length) {
+        document.querySelector('.loader').classList.add('hide');
+        document.querySelector('.main').classList.add('show');
+        document.querySelector('.header').classList.add('show');
+      }
+    };
+    image.src = img.getAttribute('src');
+  });
+};
+
+const initMobileHeader = function initMobileHeader() {
+  const headerMenu = document.getElementById('header__menu-js');
+  const handleHeader = function handleHeader() {
+    if (matchMedia('(max-width: 768px)').matches) {
+      headerMenu.classList.replace('light', 'dark');
+    } else {
+      headerMenu.classList.replace('dark', 'light');
+    }
+  };
+  window.addEventListener('resize', handleHeader);
+  handleHeader();
+};
+
+window.onload = () => {
+  initScrollEvent();
+  initLoader();
+  initMobileHeader();
+};
