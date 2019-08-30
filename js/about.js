@@ -34,14 +34,11 @@ const initExpandHandler = function initExpandHandler() {
   };
 };
 
-const scrollUp = function scrollUp() {
-  document.documentElement.scrollTop = 0;
-};
-
 const initMemberHandler = function initMemberHandler() {
   const groupInside = document.getElementById('js-group__inside');
   const groupMembers = document.querySelectorAll('.group__member');
-  const closeBtn = document.getElementById('js-overlay__closeBtn');
+  const closeBtn = document.getElementById('js-closeBtn');
+  const upBtn = document.getElementById('js-upBtn');
   const header = document.getElementById('js-header');
   const footer = document.getElementById('js-footer');
 
@@ -80,13 +77,14 @@ const initMemberHandler = function initMemberHandler() {
           visibleHandler.show(closeBtn);
           visibleHandler.hide(header);
           visibleHandler.hide(footer);
-          scrollUp();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
       });
     },
     handleShrink: function shrink() {
-      document.getElementById('js-overlay__closeBtn').addEventListener('click', () => {
+      document.getElementById('js-closeBtn').addEventListener('click', () => {
         visibleHandler.hide(closeBtn);
+        visibleHandler.hide(upBtn);
         visibleHandler.show(header);
         visibleHandler.show(footer);
         expandHandler.hide();
@@ -170,6 +168,29 @@ const initLoader = function initLoader() {
   });
 };
 
+const initUpBtn = function initUpBtn() {
+  const visibleHandler = initVisibleHandler();
+  const upBtn = document.getElementById('js-upBtn');
+
+  const initScrollVisibility = function initScrollVisibility() {
+    window.addEventListener('scroll', () => {
+      const height = window.innerHeight || document.documentElement.clientHeight;
+      if (window.scrollY > height / 2) {
+        visibleHandler.show(upBtn);
+      } else {
+        visibleHandler.hide(upBtn);
+      }
+    });
+  };
+
+  const initScrollUp = function initScrollUp() {
+    upBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  };
+
+  initScrollVisibility();
+  initScrollUp();
+};
+
 window.addEventListener('DOMContentLoaded', () => {
   initLoader();
   initMediaQuery();
@@ -183,4 +204,5 @@ window.onload = () => {
   memberHandler.handleShrink();
   removeDefaultAnimations();
   initPhotos();
+  initUpBtn();
 };
